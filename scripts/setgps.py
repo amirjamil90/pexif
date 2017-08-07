@@ -4,25 +4,25 @@ import sys
 
 usage = """Usage: setgps.py filename.jpg lat lng"""
 
-latitude = 0
-longitude= 0
-name="amir.jpg"
+latitude = 23.432
+longitude= 46.555
+name=["2.jpg","amir.jpg"]
 if len(sys.argv)==1:
-    
-    try:
-        ef = JpegFile.fromFile(name)
-        ef.set_geo(latitude,longitude)
-    except IOError:
-        type, value, traceback = sys.exc_info()
-        print >> sys.stderr, "Error opening file:", value
-    except JpegFile.InvalidFile:
-        type, value, traceback = sys.exc_info()
-        print >> sys.stderr, "Error opening file:", value
-    try:
-        ef.writeFile(name)
-    except IOError:
-        type, value, traceback = sys.exc_info()
-        print >> sys.stderr, "Error saving file:", value
+    for i in name:        
+        try:
+            ef = JpegFile.fromFile(i)
+            ef.set_geo(latitude,longitude)
+        except IOError:
+            type, value, traceback = sys.exc_info()
+            print >> sys.stderr, "Error opening file:", value
+        except JpegFile.InvalidFile:
+            type, value, traceback = sys.exc_info()
+            print >> sys.stderr, "Error opening file:", value
+        try:
+            ef.writeFile(i)
+        except IOError:
+            type, value, traceback = sys.exc_info()
+            print >> sys.stderr, "Error saving file:", value
 else:
 
     try:
